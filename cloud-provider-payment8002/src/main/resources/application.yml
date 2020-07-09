@@ -1,0 +1,32 @@
+server:
+  port: 8002
+
+spring:
+  application:
+    name: cloud-payment-service
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cloud2020?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 19981008
+    druid:
+      max-wait: 3600
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  type-aliases-package: com.cheerway.springcloud.entities
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/ #集群
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true # 当调用getHostname获取实例的hostname时，返回ip而不是host名称
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 2
+    instance-id: payment8002
+#    ip-address: 127.0.0.1 # 指定自己的ip信息，不指定的话会自己寻找
+
