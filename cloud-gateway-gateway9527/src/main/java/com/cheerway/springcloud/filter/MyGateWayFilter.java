@@ -31,7 +31,7 @@ public class MyGateWayFilter implements GlobalFilter, Ordered {
             log.info("非法请求，已被拒绝  /(ㄒoㄒ)/~~");
             //设置响应的状态码
             exchange.getResponse().setStatusCode(HttpStatus.NOT_ACCEPTABLE);
-            exchange.getResponse().setComplete();
+            return exchange.getResponse().setComplete();
         }
         log.info(username + "请求了地址，已被允许  (●'◡'●)");
         return chain.filter(exchange);
